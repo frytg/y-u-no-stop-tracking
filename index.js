@@ -20,6 +20,7 @@
 
 
 var datastore = require('@google-cloud/datastore')();
+var dateFormat = require('dateformat');
 
 exports.log = function log(req, res) {
         var key = datastore.key({namespace: process.env.GCLOUD_PROJECT, path: ["y-u-no-stop-tracking"]});
