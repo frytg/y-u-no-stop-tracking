@@ -4,12 +4,11 @@
  *
  *	For real, do we NEED all the data?
  *
- *
- *	Version		beta beta
+ *	Version		0.0.1
  *
  *	GIT			  https://github.com/frytg/y-u-no-stop-tracking
  *
- *	DEBUG		  -> README.md
+ *	DEBUG     -> README.md
  *
  *	AUTHOR		Daniel Freytag
  *				    daniel@frytg.com
