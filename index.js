@@ -34,6 +34,11 @@ exports.log = function log(req, res) {
         if(typeof req.body.url != "string") { isFaulty = true; }
         if(typeof req.body.language != "string") { isFaulty = true; }
 
+        if(typeof req.body.windowWidth != "number") { isFaulty = true; }
+        if(typeof req.body.windowHeight != "number") { isFaulty = true; }
+        if(typeof req.body.screenWidth != "number") { isFaulty = true; }
+        if(typeof req.body.screenHeight != "number") { isFaulty = true; }
+
         if(isFaulty == false) {
           var request = {key: key, data: {
   					pageId: req.body.pageId,
@@ -42,6 +47,10 @@ exports.log = function log(req, res) {
   					sectionHandle: req.body.sectionHandle,
   					url: req.body.url,
   					language: req.body.language,
+            windowWidth: req.body.windowWidth,
+            windowHeight: req.body.windowHeight,
+            screenWidth: req.body.screenWidth,
+            screenHeight: req.body.screenHeight,
             createdAt: Math.floor(new Date() / 1000),
             createdAtDay: dateFormat(d, "yyyy-mm-dd")
   				}};
