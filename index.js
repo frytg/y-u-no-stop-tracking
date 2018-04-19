@@ -24,6 +24,8 @@ var datastore = require('@google-cloud/datastore')();
 exports.log = function log(req, res) {
         var key = datastore.key({namespace: process.env.GCLOUD_PROJECT, path: ["y-u-no-stop-tracking"]});
         var isFaulty = false;
+        var d = new Date();
+
         if(typeof req.body.pageId != "number") { isFaulty = true; }
         if(typeof req.body.pageTitle != "string") { isFaulty = true; }
         if(typeof req.body.sectionId != "number") { isFaulty = true; }
@@ -39,7 +41,8 @@ exports.log = function log(req, res) {
   					sectionHandle: req.body.sectionHandle,
   					url: req.body.url,
   					language: req.body.language,
-  					createdAt: Math.floor(new Date() / 1000)
+            createdAt: Math.floor(new Date() / 1000)
+            createdAtDay: dateFormat(d, "yyyy-mm-dd")
   				}};
 
           datastore.save(request, function(err) {
