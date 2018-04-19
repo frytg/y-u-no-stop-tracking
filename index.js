@@ -41,7 +41,7 @@ exports.log = function log(req, res) {
   					sectionHandle: req.body.sectionHandle,
   					url: req.body.url,
   					language: req.body.language,
-            createdAt: Math.floor(new Date() / 1000)
+            createdAt: Math.floor(new Date() / 1000),
             createdAtDay: dateFormat(d, "yyyy-mm-dd")
   				}};
 
