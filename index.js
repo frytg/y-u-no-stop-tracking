@@ -25,12 +25,12 @@ var datastore = require('@google-cloud/datastore')();
 exports.log = function log(req, res) {
         var key = datastore.key({namespace: process.env.GCLOUD_PROJECT, path: ["y-u-no-stop-tracking"]});
         var isFaulty = false;
-        if(typeof req.body.pageId != number) { isFaulty = true; }
-        if(typeof req.body.pageTitle != string) { isFaulty = true; }
-        if(typeof req.body.sectionId != number) { isFaulty = true; }
-        if(typeof req.body.sectionHandle != string) { isFaulty = true; }
-        if(typeof req.body.url != string) { isFaulty = true; }
-        if(typeof req.body.language != string) { isFaulty = true; }
+        if(typeof req.body.pageId != "number") { isFaulty = true; }
+        if(typeof req.body.pageTitle != "string") { isFaulty = true; }
+        if(typeof req.body.sectionId != "number") { isFaulty = true; }
+        if(typeof req.body.sectionHandle != "string") { isFaulty = true; }
+        if(typeof req.body.url != "string") { isFaulty = true; }
+        if(typeof req.body.language != "string") { isFaulty = true; }
 
         if(isFaulty == false) {
           var request = {key: key, data: {
