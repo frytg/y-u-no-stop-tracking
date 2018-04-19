@@ -7,9 +7,9 @@
 
  var datastore = require('@google-cloud/datastore')();
 
-exports.importer1 = function importer1(req, res) {
+exports.log = function importer1(req, res) {
 		console.log(req);
-        var key = datastore.key({namespace: "swr2_v1", path: ["media"]});
+        var key = datastore.key({namespace: "frytgdigital", path: ["y-u-no-stop-tracking"]});
         var request = {key: key, data: {
 					pageId: req.body.pageId,
 					pageTitle: req.body.pageTitle,
