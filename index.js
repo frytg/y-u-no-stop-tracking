@@ -5,10 +5,13 @@
  * @param {!Object} res Cloud Function response context.
  */
 
- var datastore = require('@google-cloud/datastore')();
+var datastore = require('@google-cloud/datastore')();
 
-exports.log = function importer1(req, res) {
-        var key = datastore.key({namespace: "frytgdigital", path: ["y-u-no-stop-tracking"]});
+
+exports.log = function log(req, res) {
+  console.warn(req.body);
+        var key = datastore.key({namespace: process.env.GCLOUD_PROJECT, path: ["y-u-no-stop-tracking"]});
+
         var request = {key: key, data: {
 					pageId: req.body.pageId,
 					pageTitle: req.body.pageTitle,
@@ -24,7 +27,7 @@ exports.log = function importer1(req, res) {
 
         datastore.save(request, function(err) {
           if (!err) {
-            res.sendStatus(200);
+            res.json(request);
           } else {
             console.error(err);
           }
