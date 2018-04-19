@@ -20,6 +20,7 @@ exports.log = function importer1(req, res) {
 				}};
 
         console.log(request);
+        console.log(process.env);
 
         datastore.save(request, function(err) {
           if (!err) {
