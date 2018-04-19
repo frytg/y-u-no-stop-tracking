@@ -51,6 +51,8 @@ exports.log = function log(req, res) {
             }
           });
         } else {
+          console.warn("Found typeof check error");
+          console.warn(req.body);
           res.send(403);
         }
 
