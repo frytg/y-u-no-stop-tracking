@@ -23,7 +23,7 @@ Make sure to set up a BigQuery table by creating an IAM user with permission "_B
 Deploy the Cloud Function by running
 ```
 npm run deploy
-``
+```
 Note: Make sure gcloud is installed and set up to the appropriate account
 
 
