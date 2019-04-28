@@ -41,19 +41,18 @@ location /api/yPageCount/ {
 ```
 Don't forget to save and reload the configuration, then reboot nginx.
 
-Now set up a JS snippet on your website to call the `/api/yPageCount/` endpoint like this example from my Craft CMS template:
+Now set up a JS snippet on your website to call the `/api/yPageCount/` endpoint like this example from my Craft CMS template. There's no need for jQuery or any external frameworks. If JS is enabled, the browser will make a POST request to your own server with forwards that to Google Cloud Functions.
 
 ```js
 {% if not currentUser %}
 <script>
 	var json = {};
-	json.pageId = {{ pageId }};  
-	json.pageTitle = "{{ pageTitle|raw }}";  
-	json.sectionId = {{ sectionId }};  
+	json.pageId = {{ pageId }};
+	json.pageTitle = "{{ pageTitle|raw }}";
+	json.sectionId = {{ sectionId }};
 	json.sectionHandle = "{{ sectionHandle }}";
 	json.url = "{{ craft.app.request.absoluteUrl }}";
 	json.language = window.navigator.userLanguage || window.navigator.language;
-
 	json.windowWidth = window.innerWidth
 	json.windowHeight = window.innerHeight
 	json.screenWidth = screen.width
@@ -62,8 +61,17 @@ Now set up a JS snippet on your website to call the `/api/yPageCount/` endpoint 
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/api/yPageCount/');
 	xhr.setRequestHeader('Content-Type', 'application/json');
+	xhr.onload = function() {
+		console.log('yPageCount finished sending the request!');
+		console.log('For full disclosure, here\'s what\'s been saved:');
+			console.log(JSON.parse(xhr.response));
+	}
 	xhr.send(JSON.stringify(json));
-
 </script>
 {% endif %}
 ```
+A full object of the saved data is also returned to the user, so tech-savy visitors can have a look in the request trace to see which data was stored.
+
+### Why not make a call directly?
+1. You'd have to deal with cross origin requests.
+2. This way even less data (e.g. User-IP) reaches the external service.
